@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Panier avec Commande</title>
+    <style>
+        /* Styles CSS pour la mise en page de la page panier avec commande */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .produit {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .produit label {
+            font-weight: bold;
+        }
+        .produit input[type="text"] {
+            width: 70%;
+            padding: 5px;
+            font-size: 16px;
+        }
+        .produit button {
+            padding: 8px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .panier {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .payer {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+           
+                    }
+        header {
+   position: fixed;
+   left: 0;
+   top: 0;
+   bottom:30;
+   width: 100%;
+   padding: 0;
+   background-color: white;
+         }
+      header a{
+          
+          text-align: center;
+          margin-left: 20px;
+          text-decoration: 0;
+          color: gray;
+                       }
+                       section{
+                           color: navy;
+                       }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="accueil.html">Accueil</a>
+            <a href="produit.html">Produits</a>
+            <a href="panier.html">Panier</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+<h1>Panier</h1>
+
+<ul id="cartItems">
+  <!-- Les produits ajoutés au panier seront affichés ici -->
+</ul>
+
+<p id="totalAmount">Total: $0.00</p>
+
+<script>
+function ajouterProduitAuPanier(nomProduit, prixProduit) {
+  var cartItems = document.getElementById("cartItems");
+  var totalAmount = document.getElementById("totalAmount");
+
+  // Créer un nouvel élément li pour le produit
+  var newItem = document.createElement("li");
+  newItem.textContent = nomProduit + " - Prix: $" + prixProduit.toFixed(2);
+
+  // Ajouter le nouvel élément au panier
+  cartItems.appendChild(newItem);
+
+  // Calculer et mettre à jour le montant total
+  var currentTotal = parseFloat(totalAmount.textContent.split(": $")[1]);
+  totalAmount.textContent = "Total: $" + (currentTotal + prixProduit).toFixed(2);
+}
+</script>
+</body>
+</html>

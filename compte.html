@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produit</title>
+</head>
+<body>
+
+<h1>Nom du produit</h1>
+<p>Description du produit.</p>
+<p id="productPrice">Prix: $XX.XX</p>
+
+<form id="addToCartForm">
+  <input type="submit" value="Ajouter au panier">
+</form>
+
+<script>
+document.getElementById("addToCartForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Empêche l'envoi du formulaire
+
+  // Récupérer les informations sur le produit
+  var productName = "Nom du produit";
+  var productPrice = document.getElementById("productPrice").textContent.split(": $")[1];
+
+  // Ajouter le produit au panier en appelant une fonction JavaScript définie dans la page panier
+  ajouterProduitAuPanier(productName, productPrice);
+});
+
+function ajouterProduitAuPanier(nomProduit, prixProduit) {
+  var cartItems = document.getElementById("cartItems");
+  var totalAmount = document.getElementById("totalAmount");
+
+  // Convertir le prix en nombre flottant
+  prixProduit = parseFloat(prixProduit);
+
+  // Créer un nouvel élément li pour le produit
+  var newItem = document.createElement("li");
+  newItem.textContent = nomProduit + " - Prix: $" + prixProduit.toFixed(2);
+
+  // Ajouter le nouvel élément au panier
+  cartItems.appendChild(newItem);
+
+  // Calculer et mettre à jour le montant total
+  var currentTotal = parseFloat(totalAmount.textContent.split(": $")[1]);
+  totalAmount.textContent = "Total: $" + (currentTotal + prixProduit).toFixed(2);
+}
+</script>
+
+</body>
+</html>
